@@ -1,0 +1,21 @@
+{
+  "name": "forget_password_backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon app"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "express-validator": "^6.11.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.12.12"
+  },
+  "devDependencies": {
+    "nodemailer": "^6.6.1"
+  }
+}
