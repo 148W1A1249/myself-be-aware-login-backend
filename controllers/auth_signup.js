@@ -26,7 +26,7 @@ const jwt = require('jsonwebtoken')
 
 // create user with email account activation
 exports.signup = (req, res) =>{
-    console.log(req.body);
+    // console.log(req.body);
     const {name,email,password} = req.body;
     User.findOne({email}).exec((err, user)=>{
         if(user){
