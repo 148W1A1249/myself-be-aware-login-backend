@@ -7,8 +7,8 @@ const {signup, activateAccount} = require("../controllers/auth_signup");
 const {forgotPassword,resetPassword} = require("../controllers/auth_forgot");
 
 // signup page routes
-// router.get('/email-authentication', emailAuthentication);
-// router.get('/user-details', userDetails);
+router.get('/email-authentication', emailAuthentication);
+router.get('/user-details', userDetails);
 
 // signup page routes
 router.post('/signup', signup);
