@@ -29,8 +29,9 @@ exports.signup = (req, res) =>{
     // console.log(req.body);
     const {name,email,password} = req.body;
     User.findOne({email}).exec((err, user)=>{
+        console.log("user: ",user);
         if(user){
-            return res.status(400).json({error: "User with this email already exists."})
+            return res.status(1).json({error: "User with this email already exists."})
         }
 
         const token = jwt.sign({name, email, password},process.env.JWT_ACC_ACTIVATE,{expiresIn: '20m'})
