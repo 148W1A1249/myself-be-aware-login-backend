@@ -30,7 +30,7 @@ exports.signup = (req, res) =>{
     const {name,email,password} = req.body;
     User.findOne({email}).exec((err, user)=>{
         if(user){
-            return res.status(400).json({error: "User with this email already exists."})
+            return res.status(200).json({message: "User with this email already exists.",type:"error"})
         }
 
         const token = jwt.sign({name, email, password},process.env.JWT_ACC_ACTIVATE,{expiresIn: '20m'})
@@ -55,7 +55,7 @@ exports.signup = (req, res) =>{
             if(err){
               return res.json({error : err.message})
             }
-            return res.json({message: 'Email has been sent, kindly check your mail to activate the account'})
+            return res.json({message: 'Email has been sent, kindly check your mail to activate the account',type:"success"})
            
          });
         
@@ -67,12 +67,13 @@ exports.activateAccount =(req, res)=>{
   if(token){
     jwt.verify(token,process.env.JWT_ACC_ACTIVATE, function(err,decodedToken){
       if(err){
-        return res.status(400).json({error: 'Incorrect or Expired link'})
+        return res.status(200).json({message: "Incorrect or Expired link",type:"error"})
+        // return res.status(400).json({error: 'Incorrect or Expired link'})
       }
       const {name, email, password} = decodedToken;
       User.findOne({email}).exec((err, user)=>{
         if(user){
-          return res.status(400).json({error: "User with this email already exists."})
+          return res.status(200).json({message: "This Account is Already Activate.",type:"error"})
         }
         let newUser = new User({name, email, password});
         newUser.save((err, success) =>{
@@ -81,7 +82,8 @@ exports.activateAccount =(req, res)=>{
               return res.status(400).json({error: "Error activation account"})
           }
           res.json({
-              message: "Signup success!"
+              message: "Signup success!",
+              type:"success"
           })
         })
       });
