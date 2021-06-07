@@ -29,6 +29,7 @@ exports.signup = (req, res) =>{
     // console.log(req.body);
     const {name,email,password} = req.body;
     User.findOne({email}).exec((err, user)=>{
+//         console.log("user: ",user);
         if(user){
             return res.status(200).json({message: "User with this email already exists.",type:"error"})
         }
